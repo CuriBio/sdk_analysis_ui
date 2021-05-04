@@ -24,6 +24,7 @@ a = Analysis(  # type: ignore # noqa: F821     the 'Analysis' object is special 
     hiddenimports=[
         "scipy.special.cython_special",
         "flatten_dict",
+        "curibio.sdk",
     ],
     hookspath=[os.path.join(get_current_file_abs_directory(), "hooks")],
     runtime_hooks=[],
