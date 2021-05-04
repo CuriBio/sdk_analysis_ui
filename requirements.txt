@@ -1,4 +1,4 @@
-curibio.sdk==0.14.0
+curibio.sdk==0.15.0
 Cython==0.29.23
 h5py==3.2.1
 nptyping==1.4.1
