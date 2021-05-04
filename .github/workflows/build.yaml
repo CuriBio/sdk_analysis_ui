@@ -79,8 +79,8 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.CI_IAM_USER_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.CI_IAM_USER_SECRET_KEY }}
         run: |
-          pipenv run python .github/workflows/vcn.py notarize "dist-python/curibio_sdk/curibio_sdk.exe"
-          pipenv run python .github/workflows/vcn.py authenticate "dist-python/curibio_sdk/curibio_sdk.exe"
+          pipenv run python .github/workflows/vcn.py notarize "dist-python/curibio_sdk.exe"
+          pipenv run python .github/workflows/vcn.py authenticate "dist-python/curibio_sdk.exe"
 
       - name: 'Archive Installer'
         if: runner.os == 'Windows'
