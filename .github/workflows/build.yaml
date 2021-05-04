@@ -71,6 +71,8 @@ jobs:
       - name: Compile the Python Executable
         run: pipenv run pyinstaller pyinstaller.spec --log-level=DEBUG --distpath=dist-python --workpath=build-python
 
+      - name: Output
+        run: pipenv run ls -alh ./dist-python/curibio_sdk
 
       - name: Digitally Signing the EXE bundled by pyinstaller before it gets packaged into the built Electron app
         env:

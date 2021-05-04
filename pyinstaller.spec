@@ -62,5 +62,5 @@ coll = COLLECT(  # type: ignore # noqa: F821   the 'COLLECT' object is special t
         "vcruntime140.dll",  # UPX breaks this dll  https://github.com/pyinstaller/pyinstaller/pull/3821
         "qwindows.dll",  # UPX also has trouble with PyQt https://github.com/upx/upx/issues/107
     ],
-    name="curibio_skd"
+    name="curibio_sdk"
 )
