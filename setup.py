@@ -2,10 +2,9 @@
 import os
 import sys
 
-from cx_Freeze import setup, Executable
-
 from setuptools import Extension
 from setuptools import find_packages
+from setuptools import setup
 
 base = None
 
@@ -38,7 +37,5 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Topic :: Scientific/Engineering",
     ],
-    options = {"build_exe": build_exe_options},
-    executables = [Executable("main.py", base=base)]
+    options = {"build_exe": build_exe_options}
 )
-

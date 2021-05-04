@@ -47,7 +47,7 @@ jobs:
       - name: Install Python Dependencies
         env:
           PIPENV_CACHE_DIR: ./.pipenv_cache
-        run: pipenv install --deploy --sequential
+        run: pipenv run pip install -r requirements.txt
 
       # - name: 'Display Python Version'
       #   run: |
