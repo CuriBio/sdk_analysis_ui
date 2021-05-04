@@ -25,6 +25,15 @@ a = Analysis(  # type: ignore # noqa: F821     the 'Analysis' object is special 
         "scipy.special.cython_special",
         "flatten_dict",
         "curibio.sdk",
+        'h5py',
+        'h5py.defs',
+        'h5py.utils',
+        'h5py.h5s',
+        'h5py.h5p',
+        'h5py.h5t',
+        'h5py._conv',
+        'h5py.h5ac',
+        'h5py._proxy',
     ],
     hookspath=[os.path.join(get_current_file_abs_directory(), "hooks")],
     runtime_hooks=[],
@@ -65,3 +74,4 @@ coll = COLLECT(  # type: ignore # noqa: F821   the 'COLLECT' object is special t
     ],
     name="curibio_sdk"
 )
+
