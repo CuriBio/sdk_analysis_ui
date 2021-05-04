@@ -47,12 +47,12 @@ jobs:
       - name: Install Python Dependencies
         env:
           PIPENV_CACHE_DIR: ./.pipenv_cache
-        run: pipenv install --dev --deploy --sequential
+        run: pipenv install --deploy --sequential
 
-      - name: 'Display Python Version'
-        run: |
-            python -c "import sys; print(sys.version)"
-            python -m venv venv
+      # - name: 'Display Python Version'
+      #   run: |
+      #       python -c "import sys; print(sys.version)"
+      #       python -m venv venv
 
       - name: 'Display Pip Version and confirm environment empty'
         run: |
