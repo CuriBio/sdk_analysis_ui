@@ -1,0 +1,92 @@
+name: Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: 'Build sdk app'
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - "windows-2019"
+        python-version:
+            - 3.9
+
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+
+      - name: 'Setup Python'
+        uses: actions/setup-python@v2
+        with:
+            python-version: ${{ matrix.python-version }}
+
+      - name: 'Cache Python dependencies'
+        uses: actions/cache@v2.1.4
+        env:
+          cache-name: cache-pip
+        with:
+          path: ~/.cache/pip
+          key: ${{ matrix.os }}-${{ matrix.python-version }}-build-${{ env.cache-name }}-${{ hashFiles('requirements*.txt') }}
+          restore-keys: |
+            ${{ matrix.os }}-${{ matrix.python-version }}-build-${{ env.cache-name }}-
+
+      - name: Install pipenv
+        run: pip install pipenv==2020.11.15
+
+      - name: Setup Pipenv
+        env:
+          PIPENV_VENV_IN_PROJECT: 1
+        run: |
+          pipenv --python ${{ matrix.python-version }}
+          pipenv run pip freeze
+
+      - name: Install Python Dependencies
+        env:
+          PIPENV_CACHE_DIR: ./.pipenv_cache
+        run: pipenv install --dev --deploy --sequential
+
+      - name: Install Packages
+        run: pipenv run pip install -r requirements.txt
+
+      - name: 'Display Python Version'
+        run: |
+            python -c "import sys; print(sys.version)"
+            python -m venv venv
+
+      - name: 'Display Pip Version and confirm environment empty'
+        run: |
+          pip -V
+          pip freeze
+
+      - name: Download the VCN Notarizer and Login
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.CI_IAM_USER_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.CI_IAM_USER_SECRET_KEY }}
+        run: |
+          pipenv run python .github/workflows/vcn.py download
+          .\vcn --version
+          pipenv run python .github/workflows/vcn.py login
+
+      - name: Compile the Python Executable
+        run: pipenv run pyinstaller pyinstaller.spec --log-level=DEBUG --distpath=dist-python --workpath=build-python
+
+
+      - name: Digitally Signing the EXE bundled by pyinstaller before it gets packaged into the built Electron app
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.CI_IAM_USER_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.CI_IAM_USER_SECRET_KEY }}
+        run: |
+          pipenv run python .github/workflows/vcn.py notarize "dist-python/curibio_sdk/curibio_sdk.exe"
+          pipenv run python .github/workflows/vcn.py authenticate "dist-python/curibio_sdk/curibio_sdk.exe"
+
+      - name: 'Archive Installer'
+        if: runner.os == 'Windows'
+        uses: actions/upload-artifact@v2
+        with:
+          name: installer--${{ matrix.os }}--${{ matrix.node-version }}--${{ matrix.python-version }}
+          path: "dist/*.exe"
+
