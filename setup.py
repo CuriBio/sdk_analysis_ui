@@ -33,17 +33,20 @@ excludes = []
 setup(
     windows=["main.py"],
     name="sdk analyzer",
-    version="0.1.1",
+    version="0.2.0",
     description="Tools for analyzing waveforms produced by a Mantarray Instrument",
     url="",
     author="Curi Bio",
     author_email="contact@curibio.com",
     license="MIT",
     install_requires=[
-        "curibio.sdk>=0.16.1",
+        "pulse3d>=0.20.2",
         "wxPython>=4.1.1",
         "h5py",
-        "scipy",
+        "numpy==1.20.2",
+        "scipy==1.6.2",
+        "numba>=0.54.1",
+        "pandas>=1.3.4",
     ],
     zip_safe=False,
     classifiers=[

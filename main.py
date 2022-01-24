@@ -6,14 +6,20 @@ import logging
 import locale
 from threading import Thread
 
-from curibio.sdk import PlateRecording
+import logging
+logging.basicConfig(format='%(asctime)s %(message)s', level=logging.INFO, datefmt='%Y-%m-%d %H:%M:%S')
+
+from pulse3D.plate_recording import PlateRecording
+from pulse3D.excel_writer import write_xlsx
 
 logger = logging.getLogger()
 locale.getlocale = lambda _: 'en-us' #windows locales are different
 
 def analyze(path):
-    r = PlateRecording.from_directory(path)
-    r.write_xlsx(path)
+    recordings = PlateRecording.from_directory(path)
+
+    for r in recordings:
+        r.write_xlsx(path)
 
 
 class WxTextCtrlHandler(logging.Handler):
@@ -29,7 +35,7 @@ class WxTextCtrlHandler(logging.Handler):
 
 class MyFrame(wx.Frame):
     def __init__(self):
-        super().__init__(parent=None, title='curibio.sdk')
+        super().__init__(parent=None, title='pulse3d')
         self.analysis_running = False
 
         panel = wx.Panel(self)
