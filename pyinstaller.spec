@@ -58,7 +58,7 @@ exe = EXE(  # type: ignore # noqa: F821   the 'EXE' object is special to how pyi
     a.binaries,
     a.zipfiles,
     a.datas,
-    name="curibio_sdk",
+    name="pulse3d",
     debug=False,
     strip=False,
     upx=use_upx,
