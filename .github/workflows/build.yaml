@@ -72,20 +72,20 @@ jobs:
         run: pipenv run pyinstaller pyinstaller.spec --onefile --log-level=DEBUG --distpath=dist-python --workpath=build-python
 
       - name: Output
-        run: pipenv run ls -alh ./dist-python/curibio_sdk
+        run: pipenv run ls -alh ./dist-python/pulse3d
 
       - name: Digitally Signing the EXE bundled by pyinstaller before it gets packaged into the built Electron app
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.CI_IAM_USER_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.CI_IAM_USER_SECRET_KEY }}
         run: |
-          pipenv run python .github/workflows/vcn.py notarize "dist-python/curibio_sdk.exe"
-          pipenv run python .github/workflows/vcn.py authenticate "dist-python/curibio_sdk.exe"
+          pipenv run python .github/workflows/vcn.py notarize "dist-python/pulse3d.exe"
+          pipenv run python .github/workflows/vcn.py authenticate "dist-python/pulse3d.exe"
 
       - name: 'Archive Installer'
         if: runner.os == 'Windows'
         uses: actions/upload-artifact@v2
         with:
           name: installer--${{ matrix.os }}--${{ matrix.node-version }}--${{ matrix.python-version }}
-          path: "dist-python/curibio_sdk.exe"
+          path: "dist-python/pulse3d.exe"
 
