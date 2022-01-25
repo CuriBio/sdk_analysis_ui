@@ -19,7 +19,7 @@ def analyze(path):
     recordings = PlateRecording.from_directory(path)
 
     for r in recordings:
-        r.write_xlsx(path)
+        write_xlsx(r)
 
 
 class WxTextCtrlHandler(logging.Handler):
