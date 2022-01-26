@@ -1,10 +1,11 @@
 #curibio.sdk==0.16.1
-pulse3d==0.20.2
+numpy==1.20.2
+pulse3D==0.20.2
 Cython==0.29.23
 h5py==3.2.1
 nptyping==1.4.1
-numpy==1.20.2
 scipy==1.6.2
 wxPython==4.1.1
 pyinstaller==4.3
 boto3==1.17.32
+numba==0.54.1

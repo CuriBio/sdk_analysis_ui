@@ -27,7 +27,7 @@ import jsonschema
 data_path = os.path.join(os.path.dirname(jsonschema.__loader__.path), 'schemas')
 copy_tree(data_path, 'dist/jsonschema/schemas')
 
-includes = ['h5py', 'h5py.defs', 'h5py.utils', 'h5py.h5s', 'h5py.h5p', 'h5py.h5t', 'h5py._conv', 'h5py.h5ac', 'h5py._proxy']
+includes = ['h5py', 'h5py.defs', 'h5py.utils', 'h5py.h5s', 'h5py.h5p', 'h5py.h5t', 'h5py._conv', 'h5py.h5ac', 'h5py._proxy', 'numba']
 excludes = []
 
 setup(
@@ -40,9 +40,9 @@ setup(
     author_email="contact@curibio.com",
     license="MIT",
     install_requires=[
-        "pulse3d>=0.20.2",
+        "pulse3D>=0.20.2",
         "wxPython>=4.1.1",
-        "h5py",
+        #"h5py",
         "numpy==1.20.2",
         "scipy==1.6.2",
         "numba>=0.54.1",
