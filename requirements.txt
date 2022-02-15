@@ -1,6 +1,6 @@
 #curibio.sdk==0.16.1
 numpy==1.20.2
-pulse3D==0.20.2
+pulse3D==0.23.3
 Cython==0.29.23
 h5py==3.2.1
 nptyping==1.4.1

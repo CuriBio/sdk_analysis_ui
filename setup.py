@@ -40,7 +40,7 @@ setup(
     author_email="contact@curibio.com",
     license="MIT",
     install_requires=[
-        "pulse3D>=0.20.2",
+        "pulse3D>=0.23.3",
         "wxPython>=4.1.1",
         #"h5py",
         "numpy==1.20.2",
