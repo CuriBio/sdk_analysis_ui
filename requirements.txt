@@ -8,4 +8,4 @@ scipy==1.6.2
 wxPython==4.1.1
 pyinstaller==4.3
 boto3==1.17.32
-numba==0.54.1
+numba==0.55.1
