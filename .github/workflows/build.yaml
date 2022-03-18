@@ -59,14 +59,14 @@ jobs:
           pip -V
           pip freeze
 
-      - name: Download the VCN Notarizer and Login
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.CI_IAM_USER_ACCESS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.CI_IAM_USER_SECRET_KEY }}
-        run: |
-          pipenv run python .github/workflows/vcn.py download
-          .\vcn --version
-          pipenv run python .github/workflows/vcn.py login
+      # - name: Download the VCN Notarizer and Login
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.CI_IAM_USER_ACCESS_KEY }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.CI_IAM_USER_SECRET_KEY }}
+      #   run: |
+      #     pipenv run python .github/workflows/vcn.py download
+      #     .\vcn --version
+      #     pipenv run python .github/workflows/vcn.py login
 
       - name: Compile the Python Executable
         run: pipenv run pyinstaller pyinstaller.spec --onefile --log-level=DEBUG --distpath=dist-python --workpath=build-python
