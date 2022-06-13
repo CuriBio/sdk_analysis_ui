@@ -47,6 +47,7 @@ setup(
         "scipy==1.6.2",
         "numba>=0.55.1",
         "pandas>=1.3.4",
+        "pyinstaller>=5.1",
     ],
     zip_safe=False,
     classifiers=[
