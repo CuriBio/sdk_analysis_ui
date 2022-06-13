@@ -6,6 +6,6 @@ h5py==3.2.1
 nptyping==1.4.1
 scipy==1.6.2
 wxPython==4.1.1
-pyinstaller==4.3
+pyinstaller==5.1
 boto3==1.17.32
 numba==0.55.1
