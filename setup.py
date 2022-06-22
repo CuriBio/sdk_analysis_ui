@@ -43,7 +43,7 @@ setup(
         "pulse3D>=0.23.9",
         "wxPython>=4.1.1",
         #"h5py",
-        "numpy==1.21.5",
+        "numpy==1.22.0",
         "scipy==1.6.2",
         "numba>=0.55.1",
         "pandas>=1.3.4",
