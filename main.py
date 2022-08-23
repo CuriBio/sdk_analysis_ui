@@ -40,13 +40,13 @@ class MainFrame(wx.Frame):
     def __init__(self, parent, id, title):
         wx.Frame.__init__(self, parent, id, title, size=(1200, 300))
         self.panel = wx.Panel(self, -1)
-        
+
         self.box = wx.BoxSizer(wx.VERTICAL)
         self.box.Add(self.panel, 0)
 
         input_prompt = wx.StaticText(self.panel, -1, "Input directory:", pos=wx.Point(10, 10))
         self.dir_sel = wx.DirPickerCtrl(self.panel, size=(280,30), pos=(10, 25))
-        self.dir_sel.SetInitialDirectory('/Users//kristianeschenburg/Downloads/MA20211223__2021_12_23_204133_d7_UYX-001-S1_opt-run1-rerun_001')
+        self.dir_sel.SetInitialDirectory('~/Downloads')
         self.box.Add(self.dir_sel, 1, wx.ALL | wx.EXPAND, 5)
 
         output_prompt = wx.StaticText(self.panel, -1, "Output file:", pos=wx.Point(10, 60))
@@ -54,20 +54,20 @@ class MainFrame(wx.Frame):
         self.box.Add(self.out_file_sel, 1, wx.ALL | wx.EXPAND, 5)
 
         start_prompt = wx.StaticText(self.panel, -1, "Start time (sec):", pos=wx.Point(10, 140))
-        self.start_time = wx.TextCtrl(self.panel, -1, 
+        self.start_time = wx.TextCtrl(self.panel, -1,
                                  value="",
                                  pos=wx.Point(10, 160),
                                  size=wx.Size(65, 23))
 
         end_prompt = wx.StaticText(self.panel, -1, "End time (sec):", pos=wx.Point(10, 190))
-        self.end_time = wx.TextCtrl(self.panel, -1, 
+        self.end_time = wx.TextCtrl(self.panel, -1,
                                  value="",
                                  pos=wx.Point(10, 210),
                                  size=wx.Size(65, 23))
 
-        self.run_button = wx.Button(self.panel, -1, 
+        self.run_button = wx.Button(self.panel, -1,
                                  label="Run",
-                                 pos=wx.Point(10, 245), 
+                                 pos=wx.Point(10, 245),
                                  size=wx.Size(175, 30))
 
         # Respond to button click event
@@ -82,7 +82,7 @@ class MainFrame(wx.Frame):
         """
 
         input_path = self.dir_sel.GetPath()
-        
+
         output_path = self.out_file_sel.GetPath()
         if output_path == "":
             output_path = None
