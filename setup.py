@@ -44,7 +44,7 @@ setup(
         "wxPython>=4.1.1",
         #"h5py",
         "numpy==1.21.5",
-        "scipy==1.6.2",
+        "scipy==1.10.0",
         "numba>=0.55.1",
         "pandas>=1.3.4",
         "pyinstaller>=5.1",
